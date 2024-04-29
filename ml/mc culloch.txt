@@ -1,0 +1,45 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+class McCullochPittsNeuron:
+    def __init__(self, weights, threshold):
+        self.weights = weights
+        self.threshold = threshold
+
+    def activate(self, inputs):
+        # Calculate the weighted sum of inputs
+        weighted_sum = np.dot(self.weights, inputs)
+
+        # Output is 1 if weighted sum exceeds threshold, else 0
+        output = 1 if weighted_sum >= self.threshold else 0
+        return output
+
+# Example usage:
+# Define weights and threshold
+weights = np.array([0.5, -0.5])
+threshold = 0
+
+# Create a McCulloch-Pitts neuron
+neuron = McCullochPittsNeuron(weights, threshold)
+
+# Define inputs
+inputs = np.array([0.8, 0.6])
+
+# Activate the neuron
+output = neuron.activate(inputs)
+print("Output:", output)
+
+# Plotting decision boundary
+x = np.linspace(-1, 1, 100)
+y = -(weights[0]*x - threshold) / weights[1]
+
+plt.plot(x, y, label='Decision Boundary')
+plt.scatter(inputs[0], inputs[1], color='red', label='Input')
+plt.xlabel('Input 1')
+plt.ylabel('Input 2')
+plt.title('McCulloch-Pitts Neuron')
+plt.axhline(0, color='black',linewidth=0.5)
+plt.axvline(0, color='black',linewidth=0.5)
+plt.grid(color = 'gray', linestyle = '--', linewidth = 0.5)
+plt.legend()
+plt.show()
