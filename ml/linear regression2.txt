@@ -1,0 +1,29 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+# Given data
+x = np.array([1, 3, 10, 16, 26, 36]).reshape((-1, 1))
+y = np.array([42, 50, 75, 100, 150, 200])
+
+# Initialize and fit the linear regression model
+model = LinearRegression()
+model.fit(x, y)
+
+# Print coefficient and intercept
+print(f'Coefficient of regression: {model.coef_}')
+print(f'Y-Intercept: {model.intercept_}')
+
+# Generate predictions
+y_pred = model.predict(x)
+
+# Plot the data and the linear regression line
+plt.figure(figsize=(10, 6))
+plt.scatter(x, y, color='blue', label='Data')
+plt.plot(x, y_pred, color='red', label='Linear Regression Line')
+plt.xlabel('X')
+plt.ylabel('Y')
+plt.title('Linear Regression')
+plt.legend()
+plt.grid()
+plt.show()
