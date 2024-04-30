@@ -1,0 +1,5 @@
+plt.scatter(y_test, y_pred_mlr, color='blue')
+plt.title('Multiple Linear Regression')
+plt.xlabel('Actual Sales')
+plt.ylabel('Predicted Sales')
+plt.show()
