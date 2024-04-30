@@ -1,0 +1,29 @@
+import numpy as np 
+from sklearn import linear_model
+import matplotlib.pyplot as plt
+
+X = np.array([3.78, 2.44, 2.09, 0.14, 1.72, 1.65, 4.92, 4.37, 4.96, 4.52, 3.69, 5.88]).reshape(-1, 1)
+y = np.array([0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1])
+
+logreg = linear_model.LogisticRegression()
+logreg.fit(X, y)
+
+# Generate test data
+X_test = np.linspace(0, 6, 300).reshape(-1, 1)
+
+# Compute probabilities for the test data
+probs = logreg.predict_proba(X_test)[:, 1]
+
+# Print probabilities
+print("Probabilities:")
+print(probs)
+
+# Plot the logistic regression curve
+plt.figure(figsize=(10, 6))
+plt.plot(X_test, probs, color='red', linewidth=2)
+plt.scatter(X, y, c=y, cmap='viridis', marker='o', edgecolors='k', label='Data')
+plt.xlabel('X')
+plt.ylabel('Probability of Positive Class')
+plt.title('Logistic Regression Probability Curve')
+plt.grid()
+plt.show()
